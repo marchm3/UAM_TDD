@@ -7,8 +7,10 @@ import java.util.List;
 public interface MoveService
 {
 
-    void makeMove(Long boardId, Long x, Long y, String playerName, String value);
+    MoveBE makeMove(Long boardId, Long x, Long y, String playerName, String value);
 
     List<MoveBE> findByBoardId(Long boardId);
+
+    List<MoveBE> findAll();
 
 }

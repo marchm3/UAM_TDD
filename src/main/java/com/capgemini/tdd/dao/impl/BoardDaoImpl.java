@@ -4,6 +4,8 @@ import com.capgemini.tdd.dao.BoardDao;
 import com.capgemini.tdd.dao.entities.BoardBE;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -11,22 +13,37 @@ import java.util.List;
 public class BoardDaoImpl implements BoardDao
 {
 
+    private List<BoardBE> boardList;
+
+    @PostConstruct
+    private void setup()
+    {
+        boardList = new ArrayList<>();
+    }
+
     @Override
     public List<BoardBE> findAll()
     {
-        return null;
+        return boardList;
     }
 
     @Override
     public BoardBE save(final BoardBE boardBE)
     {
-        return null;
+        Long id = boardList.stream().map(x -> x.getId()).max(Long::compare).orElse(null);
+        if (id == null)
+            id = 0L;
+        else
+            id = id + 1L;
+        boardBE.setId(id);
+        boardList.add(boardBE);
+        return boardBE;
     }
 
     @Override
     public BoardBE findById(final Long id)
     {
-        return null;
+        return boardList.stream().filter(x -> x.getId().equals(id)).findFirst().orElse(null);
     }
 
     @Override

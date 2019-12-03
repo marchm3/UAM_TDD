@@ -16,7 +16,7 @@ public class MoveDaoImpl implements MoveDao
     private List<MoveBE> moveList;
 
     @PostConstruct
-    private void setup()
+    public void setup()
     {
         moveList = new ArrayList<>();
     }
@@ -38,5 +38,11 @@ public class MoveDaoImpl implements MoveDao
     public List<MoveBE> findByBoardId(final Long boardId)
     {
         return moveList.stream().filter(x -> x.getBoard().getId().equals(boardId)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<MoveBE> findAll()
+    {
+        return moveList;
     }
 }

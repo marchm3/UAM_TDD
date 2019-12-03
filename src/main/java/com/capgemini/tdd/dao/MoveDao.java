@@ -8,4 +8,5 @@ public interface MoveDao
 {
     MoveBE save(MoveBE move);
     List<MoveBE> findByBoardId(Long boardId);
+    List<MoveBE> findAll();
 }

@@ -28,18 +28,24 @@ public class MoveServiceImpl implements MoveService
 
 
     @Override
-    public void makeMove(final Long boardId, final Long x, final Long y, final String playerName, final String value)
+    public MoveBE makeMove(final Long boardId, final Long x, final Long y, final String playerName, final String value)
     {
         BoardBE boardBE = boardService.findById(boardId);
         UserBE userBE = userService.findByName(playerName);
         MoveValueEnum moveValue = MoveValueEnum.fromCode(value);
         MoveBE moveBE = new MoveBE(x, y, userBE, boardBE, moveValue);
-        moveDao.save(moveBE);
+        return moveDao.save(moveBE);
     }
 
     @Override
     public List<MoveBE> findByBoardId(final Long boardId)
     {
         return moveDao.findByBoardId(boardId);
+    }
+
+    @Override
+    public List<MoveBE> findAll()
+    {
+        return moveDao.findAll();
     }
 }
