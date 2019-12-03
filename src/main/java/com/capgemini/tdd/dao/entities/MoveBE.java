@@ -21,6 +21,11 @@ public class MoveBE
         moveValue = pMoveValue;
     }
 
+    public void setId(final Long pId)
+    {
+        id = pId;
+    }
+
     public Long getId()
     {
         return id;

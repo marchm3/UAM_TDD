@@ -13,4 +13,6 @@ public interface BoardDao
 
     BoardBE findById(Long id);
 
+    BoardBE getByPlayersNames(String playerOne, String playerTwo);
+
 }

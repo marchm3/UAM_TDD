@@ -9,14 +9,19 @@ public class MatchResultBE
     private BoardBE board;
     private UserBE playerOne;
     private UserBE playerTwo;
-    private MatchResultEnum result;
+    private UserBE winner;
 
-    public MatchResultBE(final BoardBE pBoard, final UserBE pPlayerOne, final UserBE pPlayerTwo, final MatchResultEnum pResult)
+    public MatchResultBE(final BoardBE pBoard, final UserBE pPlayerOne, final UserBE pPlayerTwo, final UserBE pWinner)
     {
         board = pBoard;
         playerOne = pPlayerOne;
         playerTwo = pPlayerTwo;
-        result = pResult;
+        winner = pWinner;
+    }
+
+    public void setId(final Long pId)
+    {
+        id = pId;
     }
 
     public Long getId()
@@ -39,9 +44,9 @@ public class MatchResultBE
         return playerTwo;
     }
 
-    public MatchResultEnum getResult()
+    public UserBE getWinner()
     {
-        return result;
+        return winner;
     }
 
     @Override
@@ -52,7 +57,7 @@ public class MatchResultBE
                ", board=" + board +
                ", playerOne=" + playerOne +
                ", playerTwo=" + playerTwo +
-               ", result=" + result +
+               ", winner=" + winner +
                '}';
     }
 }

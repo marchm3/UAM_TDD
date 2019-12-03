@@ -1,6 +1,7 @@
 package com.capgemini.tdd.rest;
 
-import com.capgemini.tdd.dao.entities.UserBE;
+import com.capgemini.tdd.mappers.UserMapper;
+import com.capgemini.tdd.services.TO.UserTO;
 import com.capgemini.tdd.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,14 +20,14 @@ public class UserRestService
     private UserService userService;
 
     @GetMapping(value = "/{name}")
-    public UserBE findById(@PathVariable String name) {
-        return userService.findByName(name);
+    public UserTO findById(@PathVariable String name) {
+        return UserMapper.fromBE(userService.findByName(name));
     }
 
     @GetMapping(path="/", produces = "application/json")
-    public List<UserBE> getEmployees()
+    public List<UserTO> getEmployees()
     {
-        return userService.findAll();
+        return UserMapper.fromBEList(userService.findAll());
     }
 
 }

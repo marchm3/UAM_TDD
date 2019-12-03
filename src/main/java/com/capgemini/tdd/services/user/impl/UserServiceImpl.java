@@ -2,6 +2,8 @@ package com.capgemini.tdd.services.user.impl;
 
 import com.capgemini.tdd.dao.UserDao;
 import com.capgemini.tdd.dao.entities.UserBE;
+import com.capgemini.tdd.mappers.UserMapper;
+import com.capgemini.tdd.services.TO.UserTO;
 import com.capgemini.tdd.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
