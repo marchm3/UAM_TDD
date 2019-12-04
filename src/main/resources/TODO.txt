@@ -1,0 +1,12 @@
+Dodac testy walidujace szczegolne przypadki:
+ - 2x pod rzad ten sam gracz
+ - gracz stawia nie swoj obiekt
+ - sprawdzic stan planszy gdy gra skonczona i znowu gracz probuje zrobic ruch
+ - ruch na juz zajete pole
+ - ruch poza plansze
+ - gra miedzy graczem A oraz A (nie mozna grac ze soba)
+ - inne niewymienione przypadki
+ Doimplementowac logike jesli testy failuja
+ Doimplementowac POSTa do wykonania ruchu dla nowej/istniejacej planszy
+ Dopisac test integracyjny do POSTa
+
