@@ -4,7 +4,7 @@ import com.capgemini.tdd.core.data.Board;
 import com.capgemini.tdd.core.data.BoardStatusEnum;
 import com.capgemini.tdd.core.enums.WinEnum;
 import com.capgemini.tdd.core.service.BoardBuilder;
-import com.capgemini.tdd.core.service.impl.BoardValidator;
+import com.capgemini.tdd.core.service.impl.BoardInspector;
 import com.capgemini.tdd.dao.entities.BoardBE;
 import com.capgemini.tdd.dao.entities.MatchResultBE;
 import com.capgemini.tdd.dao.entities.UserBE;
@@ -72,7 +72,7 @@ public class GameServiceImpl implements GameService
 
         moveService.makeMove(boardId, x, y, playerName, value);
         Board board = boardBuilder.buildBoard(boardId);
-        WinEnum boardStatus = BoardValidator.validate(board, MoveValueEnum.fromCode(value));
+        WinEnum boardStatus = BoardInspector.validate(board, MoveValueEnum.fromCode(value));
         if(WinEnum.DONE == boardStatus)
         {
             BoardBE boardBE = boardService.findById(boardId);

@@ -1,12 +1,9 @@
-package com.capgemini.tdd.services;
+package com.capgemini.tdd.services.game;
 
-import com.capgemini.tdd.dao.MoveDao;
 import com.capgemini.tdd.dao.entities.BoardBE;
 import com.capgemini.tdd.dao.entities.MoveBE;
 import com.capgemini.tdd.dao.entities.UserBE;
 import com.capgemini.tdd.dao.impl.MoveDaoImpl;
-import com.capgemini.tdd.services.game.BoardService;
-import com.capgemini.tdd.services.game.MoveService;
 import com.capgemini.tdd.services.game.impl.MoveServiceImpl;
 import com.capgemini.tdd.services.user.UserService;
 import org.junit.Assert;
@@ -18,7 +15,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -44,7 +40,7 @@ public class MoveServiceMockTest
     }
 
     @Test
-    public void test()
+    public void shouldMakeMove()
     {
         //given
         int numOfMoveEntries = moveService.findAll().size();

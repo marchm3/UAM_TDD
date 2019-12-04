@@ -1,4 +1,4 @@
-package com.capgemini.tdd.services;
+package com.capgemini.tdd.services.game;
 
 import com.capgemini.tdd.dao.entities.BoardBE;
 import com.capgemini.tdd.dao.entities.MoveBE;

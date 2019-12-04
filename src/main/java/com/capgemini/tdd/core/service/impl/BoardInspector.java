@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class BoardValidator
+public class BoardInspector
 {
 
     private static final int BOARD_SIZE = 3;
