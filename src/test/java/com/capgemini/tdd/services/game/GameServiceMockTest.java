@@ -68,7 +68,6 @@ public class GameServiceMockTest
                .makeMove(Mockito.anyLong(), Mockito.anyLong(), Mockito.anyLong(), Mockito.anyString(), Mockito.anyString());
 
         Board board = prepareBoardForDraw();
-
         Mockito.doReturn(board).when(boardBuilder).buildBoard(Mockito.anyLong());
 
         UserBE userMock = Mockito.mock(UserBE.class);
@@ -110,6 +109,45 @@ public class GameServiceMockTest
         board.put(new Point(2L, 2L), MoveValueEnum.O);
 
         return board;
+    }
+
+    @Test
+    public void playerCantMakeDoubleMove() {
+        //given
+        MoveBE moveMock = Mockito.mock(MoveBE.class);
+
+        Mockito.doReturn(moveMock)
+                .when(moveService)
+                .makeMove(Mockito.anyLong(), Mockito.anyLong(), Mockito.anyLong(), Mockito.anyString(), Mockito.anyString());
+
+        UserBE userMock = Mockito.mock(UserBE.class);
+        Mockito.doReturn("FakeName").when(userMock).getName();
+        Mockito.when(userService.findByName("FakeName")).thenReturn(userMock);
+
+        UserBE userMock2 = Mockito.mock(UserBE.class);
+        Mockito.doReturn("FakeName 2").when(userMock2).getName();
+        Mockito.when(userService.findByName("FakeName 2")).thenReturn(userMock2);
+
+        Board board = new Board();
+        Mockito.doReturn(board).when(boardBuilder).buildBoard(Mockito.anyLong());
+
+        BoardBE boardMock = Mockito.mock(BoardBE.class);
+        Mockito.when(boardService.findById(Mockito.anyLong())).thenReturn(boardMock);
+        Mockito.doReturn(userMock).when(boardMock).getPlayerOne();
+        Mockito.doReturn(userMock2).when(boardMock).getPlayerTwo();
+
+        //when
+        gameService.makeMove(1000L, 2000L, 2000L, "FakeName", "O");
+        gameService.makeMove(1000L, 3000L, 3000L, "FakeName", "O");
+
+        //then
+        Mockito.verify(moveService, Mockito.times(1)).makeMove(
+                Mockito.anyLong(),
+                Mockito.anyLong(),
+                Mockito.anyLong(),
+                Mockito.anyString(),
+                Mockito.anyString()
+        );
     }
 
 }
